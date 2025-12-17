@@ -7,3 +7,9 @@ Tech:
 - Pandas, NumPy
 - Scikit-learn
 - XGBoost
+
+
+## Day-2 Learnings
+- Implemented train/test split
+- Built baseline model
+- Compared baseline vs ML model
