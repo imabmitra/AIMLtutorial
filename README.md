@@ -89,3 +89,87 @@ After this exercise, I can confidently:
 
 ### Artifacts
 - Notebook: `02_bias_variance.ipynb`
+
+
+## Day-4: Cross-Validation (K-Fold)
+
+### Objective
+Learn reliable model evaluation using K-Fold Cross-Validation and understand why a single train–test split is often insufficient for estimating real-world performance.
+
+---
+
+### Problem with Single Train–Test Split
+A single train–test split can produce unstable evaluation results because:
+- Model performance depends heavily on how the data is split
+- The test set may not be representative of future data
+- Results can vary significantly with different random states
+
+---
+
+### Cross-Validation Overview
+K-Fold Cross-Validation works by:
+- Splitting the dataset into **K equal folds**
+- Training the model on **K−1 folds**
+- Validating on the remaining fold
+- Repeating the process K times
+- Reporting the **average performance across folds**
+
+This ensures that every data point is used for both training and validation.
+
+---
+
+### Why K-Fold Cross-Validation is Reliable
+- Reduces evaluation variance
+- Provides a more stable estimate of model generalization
+- Helps detect overfitting more consistently than a single split
+
+---
+
+### Choosing the Value of K
+| Dataset Size | Recommended K |
+|-------------|---------------|
+| Small | 5 or 10 |
+| Medium | 5 |
+| Large | 3–5 |
+
+A value of **K = 5** was used as a balance between reliability and computational cost.
+
+---
+
+### Implementation
+- Dataset: Titanic survival dataset
+- Model: Logistic Regression
+- Evaluation Metrics: Accuracy
+- Comparison:
+  - Single train–test split accuracy
+  - Mean accuracy across K-Fold Cross-Validation
+
+Results show that cross-validation provides a more consistent estimate of model performance.
+
+---
+
+### When Not to Use K-Fold Cross-Validation
+- Time-series data (data leakage risk)
+- Extremely large datasets where computation cost is high
+
+Alternative strategies include time-aware splits or a single validation set.
+
+---
+
+### Key Takeaways
+- Cross-validation improves confidence in model evaluation
+- It does not prevent overfitting but helps detect it
+- Reliable evaluation is more important than high single-split accuracy
+
+---
+
+### Interview Readiness
+After this exercise, I can:
+- Explain K-Fold Cross-Validation intuitively
+- Justify why cross-validation is preferred over a single split
+- Choose an appropriate value of K based on dataset size
+
+---
+
+### Artifacts
+- Notebook: `03_cross_validation.ipynb`
