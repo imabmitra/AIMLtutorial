@@ -173,3 +173,76 @@ After this exercise, I can:
 
 ### Artifacts
 - Notebook: `03_cross_validation.ipynb`
+
+
+## Day-5: ML Pipelines & ColumnTransformer (Data Leakage Prevention)
+
+### Objective
+Build a production-ready machine learning pipeline using `Pipeline` and `ColumnTransformer` to ensure correct preprocessing, prevent data leakage, and enable reliable model evaluation.
+
+---
+
+### What Is Data Leakage?
+Data leakage occurs when information from outside the training dataset is inadvertently used during model training. This leads to unrealistically high performance during evaluation and poor generalization in production.
+
+---
+
+### Why Pipelines Are Important
+Machine learning pipelines:
+- Enforce the correct order of preprocessing and training
+- Ensure transformations are learned only from training data
+- Prevent accidental data leakage
+- Enable reproducible and production-ready ML workflows
+
+---
+
+### Why ColumnTransformer Is Needed
+Real-world datasets typically contain mixed feature types:
+- Numerical features requiring scaling
+- Categorical features requiring encoding
+
+`ColumnTransformer` allows different preprocessing strategies to be applied safely to different feature subsets within a single pipeline.
+
+---
+
+### Implementation Details
+- Dataset: Titanic survival dataset
+- Numerical features: `age`, `fare`
+- Categorical features: `sex`
+- Preprocessing:
+  - StandardScaler for numerical features
+  - OneHotEncoder for categorical features
+- Model: Logistic Regression
+- Evaluation: Accuracy with train–test split and K-Fold Cross-Validation
+
+All preprocessing and model training steps are encapsulated inside a single pipeline to avoid leakage.
+
+---
+
+### Cross-Validation with Pipelines
+The pipeline was evaluated using K-Fold Cross-Validation, ensuring:
+- Preprocessing steps are refit on each training fold
+- Validation data remains unseen during training
+- Performance estimates are stable and reliable
+
+---
+
+### Key Takeaways
+- Data leakage is a major cause of ML failure in production
+- Pipelines enforce safe and consistent preprocessing
+- ColumnTransformer is essential for handling mixed data types
+- Pipelines integrate seamlessly with cross-validation
+
+---
+
+### Interview Readiness
+After this exercise, I can confidently:
+- Explain data leakage and its impact
+- Justify the use of pipelines in ML workflows
+- Build leak-free preprocessing and training pipelines
+- Use cross-validation safely with pipelines
+
+---
+
+### Artifacts
+- Notebook: `04_pipeline_column_transformer.ipynb`
