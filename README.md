@@ -246,3 +246,86 @@ After this exercise, I can confidently:
 
 ### Artifacts
 - Notebook: `04_pipeline_column_transformer.ipynb`
+
+
+## Day-6: Code Refactor & Modular Machine Learning
+
+### Objective
+Refactor notebook-based machine learning code into a modular, production-style Python project. The goal is to structure ML code in a way that is maintainable, testable, and ready for integration with CI/CD and MLOps pipelines.
+
+---
+
+### Why This Matters
+While notebooks are useful for experimentation, production machine learning systems require:
+- Clear separation of responsibilities
+- Reusable and testable components
+- Reproducibility and maintainability
+
+This exercise focuses on converting exploratory ML code into clean, engineering-grade Python modules.
+
+---
+
+### Project Structure
+The project was restructured as follows:
+
+
+```text
+phase1-applied-ml/
+│
+├── data/
+│   ├── raw/
+│   └── processed/
+│
+├── notebooks/
+│   ├── 01_baseline.ipynb
+│   ├── 02_bias_variance.ipynb
+│   ├── 03_cross_validation.ipynb
+│   └── 04_pipeline_column_transformer.ipynb
+│
+├── src/
+│   ├── data_loader.py
+│   ├── preprocessing.py
+│   ├── model.py
+│   └── train.py
+│
+├── requirements.txt
+└── README.md
+```
+
+---
+
+### Module Responsibilities
+
+#### `data_loader.py`
+- Handles data loading and basic cleanup
+- Isolated from feature and model logic
+
+#### `preprocessing.py`
+- Defines feature preprocessing logic
+- Uses `ColumnTransformer` for safe handling of mixed data types
+
+#### `model.py`
+- Contains model and pipeline construction
+- Keeps modeling logic independent from data loading
+
+#### `train.py`
+- Orchestrates the end-to-end training workflow
+- Handles train–test split, training, and evaluation
+- Acts as the entry point for training execution
+
+---
+
+### Key Design Principles
+- **Separation of concerns**: Each module has a single responsibility
+- **Reproducibility**: Training can be executed consistently from the command line
+- **Leakage prevention**: All preprocessing is encapsulated inside pipelines
+- **Production readiness**: Code structure aligns with MLOps and CI/CD practices
+
+---
+
+### How to Run Training
+From the project root:
+```bash
+python src/train.py
+```
+
