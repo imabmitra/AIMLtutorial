@@ -329,3 +329,13 @@ From the project root:
 python src/train.py
 ```
 
+## Week-1 Summary (Applied ML Foundations)
+
+Covered:
+- Train/test split and baseline modeling
+- Bias vs variance and overfitting detection
+- K-Fold cross-validation for reliable evaluation
+- Leak-free preprocessing using Pipeline and ColumnTransformer
+- Modular, production-style ML code structure
+
+Focus was on correctness, evaluation reliability, and production readiness rather than algorithm complexity.
