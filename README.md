@@ -339,3 +339,95 @@ Covered:
 - Modular, production-style ML code structure
 
 Focus was on correctness, evaluation reliability, and production readiness rather than algorithm complexity.
+
+
+
+## Day-8: Missing Values & Imputation (Feature Engineering – Part 1)
+
+### Objective
+Understand the causes and types of missing data and apply appropriate imputation strategies using pipeline-based preprocessing to ensure correctness, prevent data leakage, and improve model reliability.
+
+---
+
+### Why Handling Missing Values Is Important
+Missing values are common in real-world datasets and can:
+- Break machine learning algorithms
+- Introduce bias into models
+- Lead to incorrect evaluation if handled improperly
+
+Correct handling of missing values is a critical part of feature engineering.
+
+---
+
+### Types of Missing Data
+Missing values can occur for different reasons:
+
+| Type | Description |
+|-----|------------|
+| MCAR | Missing Completely At Random |
+| MAR | Missing At Random |
+| MNAR | Missing Not At Random |
+
+Understanding *why* data is missing helps determine the correct imputation strategy.
+
+---
+
+### Imputation Strategies
+
+#### Numerical Features
+- **Mean**: Suitable for symmetric distributions
+- **Median**: Preferred for skewed data or presence of outliers
+- **Constant values**: Used when missingness itself has meaning
+
+#### Categorical Features
+- **Most frequent value**: Suitable for low-cardinality features
+- **New category (e.g., “Unknown”)**: Used when missingness is informative
+
+---
+
+### Best Practices
+- Imputation must be learned only from training data
+- Avoid imputing before train–test split
+- Apply imputation inside a pipeline to prevent leakage
+- Treat missing value handling as a feature engineering decision, not a cleanup task
+
+---
+
+### Implementation Details
+- Dataset: Titanic survival dataset
+- Numerical features: `age`, `fare`
+- Categorical features: `sex`, `embarked`
+- Techniques used:
+  - `SimpleImputer` for numerical and categorical features
+  - `StandardScaler` for numerical features
+  - `OneHotEncoder` for categorical features
+- All preprocessing steps are encapsulated inside a `Pipeline` and `ColumnTransformer`
+
+---
+
+### Evaluation
+The preprocessing pipeline was combined with a Logistic Regression model and evaluated using a train–test split to ensure:
+- No data leakage
+- Consistent preprocessing across training and testing
+
+---
+
+### Key Takeaways
+- Missing data handling significantly impacts model performance
+- Different feature types require different imputation strategies
+- Pipeline-based imputation ensures correctness and reproducibility
+- Feature engineering decisions should be guided by data characteristics and business context
+
+---
+
+### Interview Readiness
+After this exercise, I can confidently:
+- Explain why missing values occur
+- Choose appropriate imputation strategies
+- Prevent data leakage during imputation
+- Implement imputation safely using ML pipelines
+
+---
+
+### Artifacts
+- Notebook: `05_missing_values_imputation.ipynb`
