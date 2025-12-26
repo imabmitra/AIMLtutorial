@@ -611,3 +611,88 @@ After this exercise, I can confidently:
 
 ### Artifacts
 - Notebook: `07_feature_scaling.ipynb`
+
+
+
+## Day-11: Feature Importance Methods (Model Interpretability)
+
+### Objective
+Understand and apply feature importance techniques to interpret machine learning models, validate feature usefulness, detect potential data leakage, and improve model trust and transparency.
+
+---
+
+### Why Feature Importance Is Important
+Feature importance helps answer critical questions such as:
+- Which features influence model predictions the most?
+- Are there redundant or useless features?
+- Is the model relying on unexpected or leaked information?
+
+In production systems, feature importance is essential for debugging, governance, and stakeholder trust.
+
+---
+
+### Types of Feature Importance Methods
+
+#### 1. Coefficient-Based Importance (Linear Models)
+- Uses magnitude of model coefficients
+- Requires features to be on comparable scales
+- Assumes linear relationships
+
+**Limitation:** Not reliable without proper scaling or for non-linear relationships.
+
+---
+
+#### 2. Tree-Based Feature Importance
+- Based on reduction in impurity (e.g., Gini importance)
+- Available in tree-based models like Random Forest and Gradient Boosting
+
+**Limitation:** Biased toward high-cardinality features.
+
+---
+
+#### 3. Permutation Importance (Preferred)
+- Shuffles one feature at a time and measures performance drop
+- Model-agnostic
+- Reflects true impact on model predictions
+
+This method provides a more reliable estimate of feature importance compared to model-internal metrics.
+
+---
+
+### Best Practices
+- Compute feature importance on validation or test data
+- Avoid interpreting unscaled coefficients
+- Do not rely solely on tree-based importance
+- Use feature importance as a diagnostic and validation tool
+
+---
+
+### Implementation Details
+- Dataset: Titanic survival dataset
+- Model: Pipeline with preprocessing and Logistic Regression
+- Feature importance method: Permutation Importance
+- Evaluation metric: Accuracy
+
+Permutation importance was computed on the test dataset to reflect real-world generalization behavior.
+
+---
+
+### Key Takeaways
+- Feature importance improves model transparency and trust
+- Different importance methods have different assumptions and limitations
+- Permutation importance is a robust, model-agnostic choice
+- Feature importance can guide feature selection and model refinement
+
+---
+
+### Interview Readiness
+After this exercise, I can confidently:
+- Explain why feature importance matters
+- Compare different feature importance techniques
+- Justify the use of permutation importance
+- Identify pitfalls in feature importance interpretation
+
+---
+
+### Artifacts
+- Notebook: `09_feature_importance2.ipynb`
