@@ -516,3 +516,98 @@ After this exercise, I can confidently:
 ### Artifacts
 - Notebook: `06_categorical_encoding.ipynb`
 
+
+## Day-10: Feature Scaling (StandardScaler vs MinMaxScaler)
+
+### Objective
+Understand when and why feature scaling is required, choose the appropriate scaling technique based on model type and data distribution, and apply scaling safely using pipeline-based preprocessing.
+
+---
+
+### Why Feature Scaling Is Important
+Feature scaling ensures that all numerical features contribute proportionally during model training.  
+Without scaling, features with larger numeric ranges can dominate learning and negatively impact model performance.
+
+---
+
+### Models That Require Feature Scaling
+
+| Model Type | Scaling Required | Reason |
+|-----------|------------------|--------|
+| Linear / Logistic Regression | Yes | Gradient-based optimization |
+| Support Vector Machines | Yes | Distance-based |
+| K-Nearest Neighbors | Yes | Distance-based |
+| Neural Networks | Yes | Optimization stability |
+| Tree-based Models | No | Scale-invariant splits |
+
+---
+
+### Common Scaling Techniques
+
+#### StandardScaler
+- Standardizes features to mean = 0 and standard deviation = 1
+- Works well with linear models and neural networks
+- Sensitive to outliers
+
+#### MinMaxScaler
+- Scales features to a fixed range, typically [0, 1]
+- Preserves relative distances
+- Sensitive to outliers
+
+---
+
+### Choosing the Right Scaler
+- Use **StandardScaler** for linear and neural network models
+- Use **MinMaxScaler** for bounded features or algorithms requiring normalized ranges
+- Consider **RobustScaler** when outliers are present
+
+---
+
+### Best Practices
+- Always scale numerical features only
+- Never scale before train–test split
+- Fit scalers only on training data
+- Apply scaling inside pipelines to prevent data leakage
+
+---
+
+### Implementation Details
+- Dataset: Titanic survival dataset
+- Numerical features: `age`, `fare`
+- Categorical features: `sex`, `embarked`
+- Techniques used:
+  - Median imputation for missing values
+  - StandardScaler for numerical features
+  - OneHotEncoder for categorical features
+- All preprocessing is encapsulated inside a `Pipeline` and `ColumnTransformer`
+- Model: Logistic Regression
+
+---
+
+### Evaluation
+The model pipeline was evaluated using a train–test split to ensure:
+- Correct application of scaling
+- Consistent preprocessing across training and testing
+- No data leakage
+
+---
+
+### Key Takeaways
+- Feature scaling is critical for many ML algorithms
+- Incorrect scaling can degrade model performance
+- Scaler selection depends on model type and data distribution
+- Pipeline-based scaling ensures reproducibility and correctness
+
+---
+
+### Interview Readiness
+After this exercise, I can confidently:
+- Explain when and why feature scaling is required
+- Differentiate between StandardScaler and MinMaxScaler
+- Identify models that require scaling
+- Apply scaling safely using pipelines
+
+---
+
+### Artifacts
+- Notebook: `07_feature_scaling.ipynb`
