@@ -431,3 +431,88 @@ After this exercise, I can confidently:
 
 ### Artifacts
 - Notebook: `05_missing_values_imputation.ipynb`
+
+## Day-9: Categorical Encoding (Feature Engineering – Part 2)
+
+### Objective
+Understand and apply appropriate categorical encoding techniques based on model type and feature cardinality, while preventing data leakage using pipeline-based preprocessing.
+
+---
+
+### Why Categorical Encoding Is Required
+Most machine learning algorithms operate on numerical data and cannot directly interpret categorical values.  
+Categorical encoding converts categorical information into numerical form without introducing unintended relationships.
+
+---
+
+### Common Encoding Techniques
+
+#### Label Encoding
+- Assigns an integer to each category
+- Suitable for tree-based models (Random Forest, XGBoost)
+- Risk of introducing artificial ordering for linear or distance-based models
+
+#### One-Hot Encoding
+- Creates binary features for each category
+- Suitable for low-cardinality categorical features
+- Commonly used with linear models
+- Can increase dimensionality if cardinality is high
+
+#### High-Cardinality Handling
+For features with many unique categories (e.g., city, product ID):
+- Frequency encoding
+- Target encoding (used cautiously with proper validation)
+- Grouping rare categories into an “Other” category
+
+---
+
+### Best Practices
+- Avoid one-hot encoding high-cardinality features
+- Never encode data before train–test split
+- Implement encoding inside pipelines to prevent data leakage
+- Choose encoding strategy based on model type and feature characteristics
+
+---
+
+### Implementation Details
+- Dataset: Titanic survival dataset
+- Numerical features: `age`, `fare`
+- Categorical features: `sex`, `embarked`
+- Techniques used:
+  - `SimpleImputer` for missing categorical values
+  - `OneHotEncoder` with `handle_unknown='ignore'`
+  - `ColumnTransformer` for mixed feature preprocessing
+- Model: Logistic Regression
+
+All preprocessing and model training steps are encapsulated within a single pipeline.
+
+---
+
+### Evaluation
+The pipeline was evaluated using a train–test split to ensure:
+- Correct preprocessing
+- No data leakage
+- Consistent feature encoding during training and inference
+
+---
+
+### Key Takeaways
+- Encoding strategy impacts both model performance and interpretability
+- Incorrect encoding can introduce bias or unnecessary complexity
+- Pipeline-based encoding ensures correctness and reproducibility
+- High-cardinality features require special handling
+
+---
+
+### Interview Readiness
+After this exercise, I can confidently:
+- Explain different categorical encoding strategies
+- Choose the appropriate encoding based on model and data
+- Handle high-cardinality categorical features
+- Prevent data leakage during encoding
+
+---
+
+### Artifacts
+- Notebook: `06_categorical_encoding.ipynb`
+
