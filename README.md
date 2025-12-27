@@ -696,3 +696,96 @@ After this exercise, I can confidently:
 
 ### Artifacts
 - Notebook: `09_feature_importance2.ipynb`
+
+
+
+## Day-12: Data Leakage Detection & Prevention
+
+### Objective
+Identify, detect, and prevent data leakage in machine learning workflows to ensure reliable model evaluation and real-world performance.
+
+---
+
+### What Is Data Leakage?
+Data leakage occurs when information that would not be available at prediction time is used during model training.  
+This results in unrealistically high evaluation metrics and poor performance in production.
+
+---
+
+### Types of Data Leakage
+
+#### 1. Train–Test Leakage
+Occurs when preprocessing steps (scaling, imputation, encoding) are applied before splitting data into training and test sets.
+
+**Prevention:** Always apply preprocessing inside pipelines after the train–test split.
+
+---
+
+#### 2. Target Leakage
+Occurs when a feature contains direct or indirect information about the target variable.
+
+**Examples:**
+- Features derived from post-outcome data
+- Aggregates that include the target itself
+
+**Prevention:** Validate that every feature would be available at prediction time.
+
+---
+
+#### 3. Time Leakage
+Occurs when future information is used to predict past events, commonly in time-series or event data.
+
+**Prevention:** Use time-aware splits and ensure features are computed using only past data.
+
+---
+
+#### 4. Cross-Validation Leakage
+Occurs when preprocessing or encoding is performed outside the cross-validation loop.
+
+**Prevention:** Use pipeline-based preprocessing so transformations are refit within each fold.
+
+---
+
+### How to Detect Data Leakage
+Common indicators include:
+- Extremely high accuracy early in modeling
+- Large gap between training and validation performance
+- Feature importance highlighting unrealistic or future-based features
+
+Regular feature review and validation are essential.
+
+---
+
+### Prevention Best Practices
+- Use `Pipeline` and `ColumnTransformer` for all preprocessing
+- Validate feature availability at prediction time
+- Apply appropriate validation strategies (time-based, group-based splits)
+- Compute feature importance to detect suspicious features
+
+---
+
+### Data Engineering Perspective
+Data leakage often originates in data pipelines:
+- Aggregations must be time-aware
+- Feature stores should enforce point-in-time correctness
+- ETL jobs should avoid using future data
+
+Preventing leakage requires collaboration between data engineering and ML workflows.
+
+---
+
+### Key Takeaways
+- Data leakage is a system-level issue, not just a modeling issue
+- Pipeline-based preprocessing is essential
+- Correct validation strategies prevent misleading evaluation
+- Leakage prevention improves model trust and reliability
+
+---
+
+### Interview Readiness
+After this exercise, I can confidently:
+- Explain different types of data leakage
+- Detect leakage using evaluation signals and feature analysis
+- Prevent leakage using pipelines and validation strategies
+- Discuss leakage from a data engineering perspective
+
