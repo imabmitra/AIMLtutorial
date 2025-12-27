@@ -789,3 +789,98 @@ After this exercise, I can confidently:
 - Prevent leakage using pipelines and validation strategies
 - Discuss leakage from a data engineering perspective
 
+## Day-13: EDA for Machine Learning (Feature-Focused Exploration)
+
+### Objective
+Perform exploratory data analysis (EDA) with the goal of improving machine learning model quality by understanding feature distributions, feature–target relationships, and potential data issues before modeling.
+
+---
+
+### EDA for ML vs EDA for BI
+EDA for machine learning differs from business intelligence analysis in its intent:
+
+| EDA for BI | EDA for ML |
+|-----------|-----------|
+| Reporting and dashboards | Diagnostic and decision-driven |
+| Aggregated metrics | Feature-level distributions |
+| KPI-focused | Model performance–focused |
+
+EDA in ML directly informs feature engineering and modeling decisions.
+
+---
+
+### Key Questions Addressed During EDA
+- Is the target variable balanced?
+- Do numerical features show skewness or outliers?
+- Which features have predictive signal?
+- Are there redundant or weak features?
+- Are there indicators of potential data leakage?
+
+---
+
+### ML-Focused EDA Steps
+
+#### Target Variable Analysis
+- Examine class distribution
+- Identify imbalance that may require stratified splitting or reweighting
+
+#### Numerical Feature Distributions
+- Analyze feature spread and skewness
+- Identify outliers
+- Decide on transformations or scaling strategies
+
+#### Feature–Target Relationships
+- Evaluate how categorical and numerical features relate to the target
+- Identify features with strong predictive signal
+
+#### Correlation Analysis
+- Detect redundant numerical features
+- Avoid multicollinearity in linear models
+
+#### Leakage Signals
+- Identify features with unusually strong correlation to the target
+- Validate feature availability at prediction time
+
+---
+
+### Best Practices
+- Use EDA to guide decisions, not just visualization
+- Focus on features, not dashboards
+- Document observations and modeling implications
+- Avoid over-plotting and unnecessary complexity
+
+---
+
+### Implementation Details
+- Dataset: Titanic survival dataset
+- Features analyzed:
+  - Numerical: `age`, `fare`
+  - Categorical: `sex`, `embarked`
+- Techniques used:
+  - Distribution analysis
+  - Feature–target grouping
+  - Correlation checks
+
+All findings were documented with clear implications for feature engineering and modeling.
+
+---
+
+### Key Takeaways
+- EDA is a critical step in building reliable ML models
+- Feature quality matters more than algorithm choice
+- Early detection of data issues improves downstream performance
+- EDA helps identify transformation, encoding, and scaling needs
+
+---
+
+### Interview Readiness
+After this exercise, I can confidently:
+- Explain the purpose of EDA in ML
+- Differentiate ML-focused EDA from BI analysis
+- Identify feature issues that impact model performance
+- Use EDA findings to guide feature engineering decisions
+
+---
+
+### Artifacts
+- Notebook: `11_eda_for_ml.ipynb`
