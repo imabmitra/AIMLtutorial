@@ -884,3 +884,104 @@ After this exercise, I can confidently:
 
 ### Artifacts
 - Notebook: `11_eda_for_ml.ipynb`
+
+## Day-15: Linear Regression & Regularization
+
+### Objective
+Understand linear regression from a modeling perspective, identify why overfitting can occur even in simple models, and apply regularization techniques (Ridge and Lasso) to improve generalization.
+
+---
+
+### Linear Regression Overview
+Linear regression models the relationship between input features and a continuous target by minimizing the squared error between predicted and actual values.
+
+It assumes a linear relationship between features and the target variable.
+
+---
+
+### Why Linear Models Can Overfit
+Although linear regression is a simple model, overfitting can occur when:
+- The number of features is large
+- Features are highly correlated
+- Polynomial or interaction features are added
+- The dataset size is small
+
+Regularization is used to control model complexity in these scenarios.
+
+---
+
+### Regularization Concept
+Regularization adds a penalty to large model coefficients during training.  
+This discourages overly complex models and improves performance on unseen data.
+
+The optimization objective becomes:
+
+```Loss = Prediction Error + Regularization Penalty```
+
+
+---
+
+### Types of Regularization
+
+#### Ridge Regression (L2)
+- Penalizes the squared magnitude of coefficients
+- Shrinks coefficients toward zero
+- Retains all features in the model
+- Useful when features are correlated
+
+#### Lasso Regression (L1)
+- Penalizes the absolute magnitude of coefficients
+- Can shrink some coefficients exactly to zero
+- Performs implicit feature selection
+
+#### ElasticNet
+- Combines L1 and L2 penalties
+- Balances coefficient shrinkage and feature selection
+
+---
+
+### Role of the Regularization Parameter (Alpha)
+- Controls the strength of regularization
+- Higher alpha increases bias and reduces variance
+- Lower alpha allows more complex models
+
+Alpha is typically tuned using cross-validation on training data.
+
+---
+
+### Best Practices
+- Always scale features before applying regularization
+- Tune regularization strength using cross-validation
+- Compare models using the same features and evaluation strategy
+- Do not tune hyperparameters on the test set
+
+---
+
+### Implementation Details
+- Dataset: Tips dataset
+- Model types: Linear Regression, Ridge, Lasso
+- Preprocessing: Feature scaling using `StandardScaler`
+- Evaluation metric: R² score
+- All preprocessing and modeling steps are implemented using pipelines
+
+---
+
+### Key Takeaways
+- Regularization improves generalization, not training accuracy
+- Ridge and Lasso address overfitting in different ways
+- Feature scaling is critical when using regularized models
+- Linear models remain powerful when combined with proper regularization
+
+---
+
+### Interview Readiness
+After this exercise, I can confidently:
+- Explain why regularization is needed
+- Differentiate between Ridge and Lasso regression
+- Describe how regularization affects bias and variance
+- Implement regularized linear models in a production-safe way
+
+---
+
+### Artifacts
+- Notebook: `12_linear_regression_regularization.ipynb`
