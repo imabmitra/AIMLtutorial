@@ -985,3 +985,81 @@ After this exercise, I can confidently:
 
 ### Artifacts
 - Notebook: `12_linear_regression_regularization.ipynb`
+
+## Day-16: Logistic Regression & Threshold Tuning
+
+### Objective
+Understand logistic regression as a probabilistic classification model and learn how decision thresholds affect business outcomes through precision–recall trade-offs.
+
+---
+
+### Logistic Regression Overview
+Logistic regression is a linear model that predicts the probability of a binary outcome using a sigmoid function.  
+It outputs probabilities in the range [0, 1], not class labels.
+
+---
+
+### Probability vs Decision
+Logistic regression produces probabilities, which must be converted into class labels using a decision threshold.
+
+The default threshold of 0.5 is arbitrary and should not be blindly applied.
+
+---
+
+### Threshold Tuning
+Decision thresholds directly control the balance between:
+- Precision (false positives)
+- Recall (false negatives)
+
+Thresholds should be selected based on business costs and risk tolerance.
+
+---
+
+### Evaluation Metrics
+Accuracy alone is insufficient, especially for imbalanced datasets.
+
+Key metrics:
+- Precision
+- Recall
+- F1-score
+- ROC-AUC
+- PR-AUC (preferred for class imbalance)
+
+---
+
+### Best Practices
+- Always use stratified train–test splits
+- Tune thresholds on validation data, not test data
+- Evaluate models using multiple metrics
+- Treat classification as a probability estimation problem
+
+---
+
+### Implementation Details
+- Dataset: Titanic dataset
+- Model: Logistic Regression
+- Preprocessing: Feature scaling using `StandardScaler`
+- Output: Probability-based predictions
+- Threshold tuning applied post-training
+
+---
+
+### Key Takeaways
+- Logistic regression predicts probabilities, not decisions
+- Threshold selection is a business-driven choice
+- Precision–recall trade-offs must be explicitly evaluated
+- Simple models become powerful with correct thresholding
+
+---
+
+### Interview Readiness
+After this exercise, I can confidently:
+- Explain how logistic regression works
+- Justify why thresholds must be tuned
+- Choose appropriate evaluation metrics
+- Align model decisions with business objectives
+
+---
+
+### Artifacts
+- Notebook: `13_logistic_regression_thresholds.ipynb`
