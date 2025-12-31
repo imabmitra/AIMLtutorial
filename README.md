@@ -1063,3 +1063,156 @@ After this exercise, I can confidently:
 
 ### Artifacts
 - Notebook: `13_logistic_regression_thresholds.ipynb`
+
+
+## Day-17: Decision Trees (Classification & Regression)
+
+### Objective
+Understand how decision trees work internally, how they select splits using mathematical impurity measures, why they overfit, and how to control their complexity in real-world machine learning systems.
+
+---
+
+## Decision Trees Overview
+Decision trees are rule-based models that recursively split data into smaller, more homogeneous groups using feature thresholds.
+
+They are:
+- Easy to interpret
+- Powerful for non-linear relationships
+- Highly prone to overfitting if not controlled
+
+---
+
+## Classification Trees: Impurity Measures
+
+### Gini Impurity
+Gini impurity measures how mixed the classes are in a node.
+
+**Formula:**
+
+```Gini = 1 − Σ (pᵢ²)```
+
+Where:
+- pᵢ = proportion of class i in the node
+
+**Properties:**
+- Gini = 0 → pure node
+- Faster to compute
+- Default criterion in sklearn
+
+---
+
+### Entropy
+Entropy measures uncertainty in a node.
+
+**Formula:**
+```Entropy = − Σ (pᵢ log₂ pᵢ)```
+
+**Properties:**
+- Entropy = 0 → pure node
+- Higher value → more uncertainty
+- Used in ID3 algorithm
+
+---
+
+### Information Gain
+Information Gain measures the reduction in entropy after a split.
+
+**Formula:**
+
+```Information Gain = Entropy(parent) − Σ (Nⱼ / N) × Entropy(childⱼ)```
+
+
+Where:
+- N = samples in parent node
+- Nⱼ = samples in child node
+
+**Goal:** Maximize information gain
+
+---
+
+## Regression Trees: Variance Reduction
+
+### Variance (Node Impurity)
+Regression trees measure impurity using variance of target values.
+
+**Formula:**
+
+```Variance = (1 / n) Σ (yᵢ − ȳ)²```
+
+
+Where:
+- yᵢ = target value
+- ȳ = mean target value
+
+---
+
+### Variance Reduction
+Splits are chosen to maximize reduction in variance.
+
+**Formula:**
+
+```Variance Reduction = Variance(parent) − Σ (Nⱼ / N) × Variance(childⱼ)```
+
+
+
+---
+
+## Why Decision Trees Overfit
+- Trees can grow very deep
+- They can memorize noise
+- Small leaf nodes lead to unstable predictions
+
+A fully grown tree usually has low bias but very high variance.
+
+---
+
+## Controlling Tree Complexity
+
+Key hyperparameters:
+- `max_depth` – limits tree height
+- `min_samples_split` – avoids small splits
+- `min_samples_leaf` – smooths predictions
+- `max_features` – introduces randomness
+
+Controlling these improves generalization.
+
+---
+
+## Classification vs Regression Trees
+
+| Aspect | Classification Tree | Regression Tree |
+|------|---------------------|----------------|
+| Target | Categorical | Continuous |
+| Impurity Metric | Gini / Entropy | Variance |
+| Split Objective | Max impurity reduction | Max variance reduction |
+| Prediction | Majority class | Mean value |
+
+---
+
+## Best Practices
+- Never allow unrestricted tree growth
+- Tune depth and minimum samples using validation data
+- Avoid relying only on accuracy
+- Trees work best as part of ensembles
+
+---
+
+## Interview Readiness
+After this exercise, I can confidently:
+- Explain how decision trees choose splits mathematically
+- Differentiate Gini, entropy, and information gain
+- Explain regression trees using variance reduction
+- Justify hyperparameter choices to control overfitting
+
+---
+
+## Key Takeaways
+- Trees split data to maximize purity or reduce variance
+- Classification trees minimize impurity
+- Regression trees minimize variance
+- Interpretability comes at the cost of stability
+
+---
+
+## Artifacts
+- Notebook: `14_decision_trees.ipynb`
