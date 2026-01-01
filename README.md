@@ -1216,3 +1216,161 @@ After this exercise, I can confidently:
 
 ## Artifacts
 - Notebook: `14_decision_trees.ipynb`
+
+## Day-18: Random Forest (Bagging, Variance Reduction & OOB)
+
+### Objective
+Understand how Random Forest improves upon decision trees using bagging and feature randomness, how it reduces variance, and how Out-of-Bag (OOB) error provides an internal validation mechanism.
+
+---
+
+## Why Random Forest?
+Single decision trees are:
+- Highly sensitive to data variations
+- Prone to overfitting
+- High variance models
+
+Random Forest addresses this by combining multiple decorrelated trees.
+
+---
+
+## What Is Random Forest?
+Random Forest is an ensemble learning algorithm that:
+- Trains multiple decision trees
+- Uses bootstrap sampling (sampling with replacement)
+- Considers a random subset of features at each split
+- Aggregates predictions from all trees
+
+Prediction:
+- Classification → Majority vote
+- Regression → Average of predictions
+
+---
+
+## Bagging (Bootstrap Aggregation)
+
+### Process
+1. Sample training data with replacement
+2. Train independent trees
+3. Aggregate predictions
+
+### Why Bagging Works
+Averaging multiple high-variance models reduces overall variance.
+
+**Key idea:**
+> Averaging uncorrelated models improves generalization.
+
+---
+
+## Feature Randomness
+At each split, Random Forest considers only a subset of features.
+
+This:
+- Reduces correlation between trees
+- Strengthens ensemble performance
+- Improves variance reduction
+
+---
+
+## Out-of-Bag (OOB) Samples
+
+### What Is OOB?
+When bootstrapping:
+- Not all samples are selected for a tree
+- Samples not selected are called **Out-of-Bag (OOB)** samples
+
+Probability a sample is NOT selected:
+
+```(1 − 1/N)ⁿ ≈ e⁻¹ ≈ 36.8% ```
+
+
+Approximately **36% of data is OOB for each tree**.
+
+---
+
+## OOB Error Estimation
+
+### How OOB Works
+For each data point:
+1. Collect predictions from trees where the point was OOB
+2. Aggregate those predictions
+3. Compare with true label
+
+This produces an unbiased estimate of generalization error.
+
+### OOB Error (Conceptual Formula)
+
+``` OOB Error = (1/N) Σ I(yᵢ ≠ ŷᵢᴼᴼᴮ) ```
+
+
+---
+
+## Why OOB Is Useful
+- No separate validation set required
+- Acts like built-in cross-validation
+- Computationally efficient
+
+**Senior insight:**
+> OOB provides a free validation estimate during training.
+
+---
+
+## Random Forest Hyperparameters
+
+| Parameter | Purpose |
+|--------|--------|
+| n_estimators | Number of trees |
+| max_depth | Controls tree complexity |
+| max_features | Feature randomness |
+| min_samples_leaf | Prevents noisy splits |
+| bootstrap | Enables bagging |
+
+---
+
+## Feature Importance in Random Forest
+Random Forest provides impurity-based feature importance.
+
+**Caution:**
+- Biased toward high-cardinality features
+- Should be validated using permutation importance
+
+---
+
+## Best Practices
+- Do not rely solely on default parameters
+- Monitor OOB score for overfitting signals
+- Use Random Forest as a strong baseline
+- Prefer permutation importance for interpretation
+
+---
+
+## Random Forest vs Decision Tree
+
+| Aspect | Decision Tree | Random Forest |
+|----|----|----|
+| Variance | High | Reduced |
+| Interpretability | High | Medium |
+| Stability | Low | High |
+| Overfitting | Likely | Less likely |
+
+---
+
+## Interview Readiness
+After this exercise, I can confidently:
+- Explain bagging and variance reduction
+- Describe OOB samples and OOB error
+- Justify Random Forest hyperparameters
+- Compare Random Forest with single trees and boosting
+
+---
+
+## Key Takeaways
+- Random Forest reduces variance, not bias
+- Bagging + feature randomness decorrelates trees
+- OOB error provides internal validation
+- Random Forest is a strong production baseline
+
+---
+
+## Artifacts
+- Notebook: `15_random_forest.ipynb`
