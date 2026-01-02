@@ -1374,3 +1374,139 @@ After this exercise, I can confidently:
 
 ## Artifacts
 - Notebook: `15_random_forest.ipynb`
+
+## Day-19: XGBoost (Boosting & Residual Learning)
+
+### Objective
+Understand gradient boosting from first principles, how XGBoost learns sequentially from errors, and how regularization and shrinkage make it a powerful and robust algorithm in production systems.
+
+---
+
+## Why Boosting?
+Boosting addresses the **bias problem** in machine learning models.
+
+Unlike bagging (Random Forest), boosting:
+- Trains models sequentially
+- Focuses on difficult samples
+- Gradually improves predictions
+
+---
+
+## What Is XGBoost?
+XGBoost (Extreme Gradient Boosting) is an optimized implementation of gradient boosting that:
+- Builds decision trees sequentially
+- Fits each tree on the residuals of the previous ensemble
+- Uses explicit regularization to control overfitting
+
+---
+
+## Residual Learning (Core Idea)
+At iteration \(t\):
+
+```ŷ⁽ᵗ⁾ = ŷ⁽ᵗ⁻¹⁾ + η · fₜ(x)```
+
+
+Where:
+- fₜ(x) = newly trained tree
+- η = learning rate (shrinkage)
+
+Each new tree corrects the mistakes of previous trees.
+
+---
+
+## Objective Function
+XGBoost minimizes a regularized objective:
+
+```Objective = Σ L(yᵢ, ŷᵢ) + Σ Ω(fₜ)```
+
+
+Where:
+- L = loss function
+- Ω = regularization term
+
+---
+
+## Regularization in XGBoost
+XGBoost explicitly penalizes model complexity:
+
+```Ω(f) = γT + ½λ Σ wⱼ²```
+
+
+Where:
+- T = number of leaves
+- wⱼ = leaf weights
+- γ, λ = regularization parameters
+
+This helps prevent overfitting.
+
+---
+
+## Why XGBoost Works Well
+- Bias reduction through boosting
+- Shrinkage via learning rate
+- Subsampling of rows and columns
+- Explicit regularization
+- Efficient implementation
+
+---
+
+## Key Hyperparameters
+
+| Parameter | Purpose |
+|--------|--------|
+| n_estimators | Number of trees |
+| learning_rate | Contribution of each tree |
+| max_depth | Tree complexity |
+| subsample | Row sampling |
+| colsample_bytree | Feature sampling |
+| gamma | Split penalty |
+| lambda | L2 regularization |
+
+---
+
+## Best Practices
+- Use small learning rates with more trees
+- Apply early stopping
+- Tune regularization parameters
+- Monitor validation performance carefully
+
+---
+
+## Random Forest vs XGBoost
+
+| Aspect | Random Forest | XGBoost |
+|-----|-----|-----|
+| Training | Parallel | Sequential |
+| Bias | Moderate | Low |
+| Variance | Reduced | Can increase |
+| Regularization | Implicit | Explicit |
+| Interpretability | Medium | Lower |
+
+---
+
+## When NOT to Use XGBoost
+- Very small datasets
+- Strict latency requirements
+- Scenarios requiring high interpretability
+
+---
+
+## Interview Readiness
+After this exercise, I can confidently:
+- Explain boosting and residual learning
+- Describe XGBoost’s objective function
+- Justify key hyperparameters
+- Compare XGBoost with Random Forest
+
+---
+
+## Key Takeaways
+- XGBoost reduces bias through sequential learning
+- Regularization is central to its success
+- Learning rate controls stability
+- Powerful models require careful tuning
+
+---
+
+## Artifacts
+- Notebook: `16_xgboost.ipynb`
