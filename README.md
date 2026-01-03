@@ -1510,3 +1510,121 @@ After this exercise, I can confidently:
 
 ## Artifacts
 - Notebook: `16_xgboost.ipynb`
+
+
+## Day-20: Model Comparison & Selection (Bias–Variance Trade-off)
+
+### Objective
+Learn how to compare multiple machine learning models fairly, evaluate them using appropriate metrics, and select the best model based on performance, stability, and real-world constraints.
+
+---
+
+## Why Model Comparison Matters
+In real-world systems, several models may perform similarly on metrics.  
+The goal is not to choose the most complex model, but the one that best fits the data, business objectives, and system constraints.
+
+Model selection is an engineering decision, not a leaderboard exercise.
+
+---
+
+## Fair Model Comparison Principles
+To ensure a valid comparison:
+- Use the same dataset and features
+- Apply identical preprocessing and pipelines
+- Use the same train/validation splits
+- Evaluate using the same metrics
+- Avoid tuning on the test set
+
+Any difference in performance should come from the model, not the setup.
+
+---
+
+## Models Compared
+- Logistic Regression
+- Decision Tree
+- Random Forest
+- XGBoost
+
+These models represent increasing complexity and different bias–variance characteristics.
+
+---
+
+## Bias–Variance Trade-off
+
+| Model | Bias | Variance |
+|-----|-----|-----|
+| Logistic Regression | High | Low |
+| Decision Tree | Low | High |
+| Random Forest | Medium | Low |
+| XGBoost | Low | Medium–High |
+
+Ensemble methods improve performance by managing this trade-off.
+
+---
+
+## Metric Selection
+Metric choice depends on the problem type and business objective.
+
+| Scenario | Preferred Metrics |
+|-------|----------------|
+| Balanced classification | Accuracy, ROC-AUC |
+| Imbalanced classification | Recall, PR-AUC |
+| Regression | RMSE, MAE |
+
+Metrics define what “best” means.
+
+---
+
+## Practical Model Comparison Workflow
+1. Train all models using pipelines
+2. Evaluate with cross-validation or OOB (for Random Forest)
+3. Compare both metrics and error patterns
+4. Consider non-metric constraints (latency, explainability)
+
+---
+
+## Example Comparison Summary
+
+| Model | Strengths | Limitations |
+|----|----|----|
+| Logistic Regression | Interpretable, fast | Limited to linear patterns |
+| Decision Tree | Explainable rules | Unstable, overfits |
+| Random Forest | Stable, strong baseline | Slower inference |
+| XGBoost | High accuracy | Requires tuning, less interpretable |
+
+---
+
+## Model Selection Criteria
+Final model selection should consider:
+- Predictive performance
+- Generalization stability
+- Interpretability requirements
+- Latency and resource constraints
+- Maintenance complexity
+
+---
+
+## Common Mistakes
+- Always choosing the most complex model
+- Optimizing only for accuracy
+- Ignoring inference and operational costs
+- Comparing models with inconsistent setups
+
+---
+
+## Interview Readiness
+After this exercise, I can confidently:
+- Explain how to compare models fairly
+- Discuss bias–variance trade-offs
+- Choose appropriate evaluation metrics
+- Justify model selection decisions in interviews
+
+---
+
+## Key Takeaways
+- Fair comparison is critical
+- Metrics must align with business goals
+- Simpler models often outperform in production
+- Model selection is a trade-off decision
+
+---
