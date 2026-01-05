@@ -1628,3 +1628,131 @@ After this exercise, I can confidently:
 - Model selection is a trade-off decision
 
 ---
+
+## Day-22: Classification Metrics & Confusion Matrix
+
+### Objective
+Understand how classification models are evaluated using the confusion matrix and derived metrics, and learn to select evaluation metrics based on business risk rather than accuracy alone.
+
+---
+
+## Confusion Matrix
+The confusion matrix is the foundation of all classification metrics.
+
+|                | Predicted Positive | Predicted Negative |
+|----------------|-------------------|-------------------|
+| Actual Positive | True Positive (TP) | False Negative (FN) |
+| Actual Negative | False Positive (FP) | True Negative (TN) |
+
+Every evaluation metric is derived from these four values.
+
+---
+
+## Core Classification Metrics
+
+### Accuracy
+``` Accuracy = (TP + TN) / (TP + TN + FP + FN) ```
+
+
+- Measures overall correctness
+- Misleading for imbalanced datasets
+- Does not differentiate error types
+
+---
+
+### Precision
+``` Precision = TP / (TP + FP) ```
+
+
+- Measures correctness of positive predictions
+- High precision means fewer false positives
+- Important when false positives are costly
+
+---
+
+### Recall (Sensitivity)
+``` Recall = TP / (TP + FN) ```
+
+
+- Measures how many actual positives were identified
+- High recall means fewer false negatives
+- Critical when missing positives is costly
+
+---
+
+### F1-Score
+
+``` F1 = 2 × (Precision × Recall) / (Precision + Recall) ```
+
+
+- Harmonic mean of precision and recall
+- Balances false positives and false negatives
+- Preferred for imbalanced classification
+
+---
+
+## Why Accuracy Is Often Misleading
+In highly imbalanced datasets, a model can achieve high accuracy while failing to detect the minority class.
+
+Example:
+- 99% negative class
+- Model predicts all negatives
+- Accuracy = 99%
+- Recall = 0
+
+High accuracy does not imply a useful model.
+
+---
+
+## Metric Selection Based on Business Risk
+
+| Use Case | Priority Metric |
+|--------|----------------|
+| Fraud detection | Recall |
+| Medical diagnosis | Recall |
+| Spam filtering | Precision |
+| Balanced classification | F1-score / ROC-AUC |
+
+Metrics encode business cost and risk.
+
+---
+
+## Macro, Micro, and Weighted Metrics
+
+| Metric Type | Description |
+|-----------|------------|
+| Micro | Aggregates contributions of all classes |
+| Macro | Treats all classes equally |
+| Weighted | Accounts for class imbalance |
+
+Macro metrics are useful for detecting minority-class failure.
+
+---
+
+## Best Practices
+- Always inspect the confusion matrix
+- Avoid relying on accuracy alone
+- Choose metrics aligned with business objectives
+- Evaluate multiple metrics simultaneously
+
+---
+
+## Interview Readiness
+After this exercise, I can confidently:
+- Explain the confusion matrix
+- Differentiate precision, recall, and F1-score
+- Select evaluation metrics based on problem context
+- Explain why accuracy can be misleading
+
+---
+
+## Key Takeaways
+- All classification metrics derive from the confusion matrix
+- Metric choice defines model success
+- Accuracy is often insufficient
+- Evaluation should reflect real-world costs
+
+---
+
+## Artifacts
+- Notebook: `17_classification_metrics.ipynb`
