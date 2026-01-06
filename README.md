@@ -1756,3 +1756,119 @@ After this exercise, I can confidently:
 
 ## Artifacts
 - Notebook: `17_classification_metrics.ipynb`
+
+
+## Day-23: ROC-AUC & Threshold Tuning
+
+### Objective
+Understand probabilistic model evaluation using ROC-AUC and learn how to tune classification thresholds based on business requirements rather than relying on default values.
+
+---
+
+## Probabilities vs Decisions
+Most classification models output probabilities, not final class labels.
+
+
+``` Model → Probability → Threshold → Prediction```
+
+
+Threshold selection determines how probabilities are converted into decisions.
+
+---
+
+## ROC Curve
+The ROC (Receiver Operating Characteristic) curve visualizes model performance across all classification thresholds.
+
+It plots:
+- True Positive Rate (TPR / Recall)
+- vs False Positive Rate (FPR)
+
+---
+
+## Mathematical Definitions
+
+
+``` TPR = TP / (TP + FN) ```
+``` FPR = FP / (FP + TN) ```
+
+
+
+Each point on the ROC curve corresponds to a different threshold.
+
+---
+
+## ROC-AUC (Area Under Curve)
+ROC-AUC measures the probability that a randomly chosen positive sample is ranked higher than a randomly chosen negative sample.
+
+### Interpretation
+
+| AUC | Meaning |
+|----|--------|
+| 0.5 | Random ranking |
+| 0.7–0.8 | Acceptable |
+| 0.8–0.9 | Strong |
+| >0.9 | Potential data leakage |
+
+ROC-AUC is threshold-independent.
+
+---
+
+## ROC-AUC vs PR-AUC
+
+| Aspect | ROC-AUC | PR-AUC |
+|------|--------|-------|
+| Handles class imbalance | Poorly | Well |
+| Focus | Ranking | Minority class performance |
+| Recommended for | Balanced datasets | Imbalanced datasets |
+
+---
+
+## Threshold Tuning
+The default threshold (0.5) is rarely optimal.
+
+### Threshold Impact
+
+| Threshold | Precision | Recall |
+|---------|-----------|--------|
+| Lower | Decreases | Increases |
+| Higher | Increases | Decreases |
+
+Thresholds should be tuned using validation data.
+
+---
+
+## Business-Driven Threshold Examples
+- Fraud detection → prioritize recall → lower threshold
+- Spam filtering → prioritize precision → higher threshold
+
+Threshold selection is a business decision.
+
+---
+
+## Best Practices
+- Use ROC-AUC to compare models
+- Tune thresholds separately from model training
+- Avoid tuning on the test set
+- Consider PR-AUC for imbalanced problems
+
+---
+
+## Interview Readiness
+After this exercise, I can:
+- Explain ROC curves and ROC-AUC clearly
+- Compare ROC-AUC and PR-AUC
+- Justify threshold choices based on business impact
+- Avoid common evaluation pitfalls
+
+---
+
+## Key Takeaways
+- ROC-AUC evaluates ranking ability, not final decisions
+- Threshold tuning controls precision–recall trade-offs
+- Business context determines optimal thresholds
+- High AUC does not guarantee good production behavior
+
+---
+
+## Artifacts
+- Notebook: `18_roc_auc_thresholds.ipynb`
