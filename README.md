@@ -1872,3 +1872,155 @@ After this exercise, I can:
 
 ## Artifacts
 - Notebook: `18_roc_auc_thresholds.ipynb`
+
+## Day-24: Handling Class Imbalance
+
+### Objective
+Understand why class imbalance breaks standard evaluation, learn multiple strategies to handle it safely, and apply imbalance techniques without introducing data leakage.
+
+---
+
+## What Is Class Imbalance?
+Class imbalance occurs when one class significantly outnumbers the other(s).
+
+Example:
+- Fraud: 1%
+- Non-fraud: 99%
+
+This is common in real-world problems such as fraud detection, churn prediction, anomaly detection, and medical diagnosis.
+
+---
+
+## Why Accuracy Fails
+A model predicting only the majority class can achieve very high accuracy while being completely useless.
+
+Accuracy does not reflect minority-class performance.
+
+---
+
+## Step 1: Choose the Right Metric
+Before modifying data or models, align evaluation metrics with business risk.
+
+| Metric | Use Case |
+|------|---------|
+| Recall | Catch rare but costly events |
+| Precision | Avoid false alarms |
+| F1-score | Balance precision and recall |
+| PR-AUC | Imbalanced datasets |
+
+Metrics must come before modeling decisions.
+
+---
+
+## Step 2: Class Weighting (Preferred First Approach)
+Most algorithms support class weighting to penalize minority-class errors more heavily.
+
+Example:
+```LogisticRegression(class_weight="balanced")```
+```RandomForestClassifier(class_weight="balanced")```
+
+Advantages:
+
+* No data duplication
+* Low risk of overfitting
+* Easy to implement
+
+Class weighting is usually the safest first step.
+
+---
+
+## Step 3: Resampling Techniques
+
+### Oversampling
+
+* Duplicates minority-class samples
+* Risk of overfitting
+
+### Undersampling
+
+* Removes majority-class samples
+* Risk of information loss
+
+### SMOTE
+
+* Generates synthetic minority samples
+* Must be applied carefully
+
+---
+
+## Avoiding Data Leakage (Critical)
+
+Resampling must be done **only on training data**.
+
+❌ Incorrect:
+
+```
+SMOTE → Train/Test Split
+```
+
+✅ Correct:
+
+```
+Train/Test Split → Resampling on Training Set Only
+```
+
+Applying resampling before splitting leaks information into validation or test sets.
+
+---
+
+## Step 4: Threshold Tuning
+
+Adjusting the classification threshold is often safer than resampling.
+
+Lower threshold → higher recall
+Higher threshold → higher precision
+
+Thresholds should be tuned using validation data.
+
+---
+
+## Model-Specific Notes
+
+| Model               | Recommended Strategy             |
+| ------------------- | -------------------------------- |
+| Logistic Regression | Class weights + threshold tuning |
+| Random Forest       | Class weights + PR-AUC           |
+| XGBoost             | scale_pos_weight                 |
+
+---
+
+## Best Practices
+
+* Start with metric selection
+* Use class weighting before resampling
+* Apply resampling only on training data
+* Tune thresholds based on business needs
+* Evaluate using PR-AUC for imbalance
+
+---
+
+## Interview Readiness
+
+After this exercise, I can:
+
+* Explain why accuracy fails on imbalanced data
+* Choose appropriate imbalance metrics
+* Apply class weighting safely
+* Avoid data leakage during resampling
+* Justify imbalance strategies in interviews
+
+---
+
+## Key Takeaways
+
+* Class imbalance is the norm, not an exception
+* Metrics define what success means
+* Class weighting is usually the first choice
+* Improper resampling causes data leakage
+* Threshold tuning is a powerful tool
+
+---
+
+## Artifacts
+
+* Notebook: `19_class_imbalance.ipynb`
